@@ -1,1 +1,177 @@
 # ML Pipeline automation
+
+name: ML Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'src/**'
+      - 'data/**'
+      - 'models/**'
+      - 'notebooks/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/**'
+      - 'data/**'
+      - 'models/**'
+      - 'notebooks/**'
+  schedule:
+    - cron: '0 2 * * 1'  # Weekly retraining on Mondays at 2 AM
+  workflow_dispatch:
+    inputs:
+      retrain_model:
+        description: 'Force model retraining'
+        required: false
+        default: false
+        type: boolean
+
+env:
+  PYTHON_VERSION: '3.10'
+  MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+  AWS_DEFAULT_REGION: us-east-1
+
+jobs:
+  data-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy scikit-learn great-expectations dvc[s3]
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      
+      - name: Validate data schema
+        run: |
+          python scripts/validate_data.py
+      
+      - name: Run data quality checks
+        run: |
+          great_expectations checkpoint run data_quality_checkpoint
+      
+      - name: Upload validation results
+        uses: actions/upload-artifact@v3
+        with:
+          name: data-validation-results
+          path: great_expectations/uncommitted/data_docs/
+
+  model-training:
+    needs: data-validation
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event.inputs.retrain_model == 'true' || github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install mlflow scikit-learn pandas numpy matplotlib seaborn
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      
+      - name: Configure MLflow
+        run: |
+          mlflow experiments create -n "github-actions-experiment" || true
+      
+      - name: Train model
+        run: |
+          python scripts/train_model.py --experiment-name "github-actions-experiment"
+      
+      - name: Evaluate model
+        run: |
+          python scripts/evaluate_model.py
+      
+      - name: Generate model reports
+        run: |
+          python scripts/generate_model_report.py
+      
+      - name: Upload model artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: model-artifacts
+          path: |
+            models/
+            reports/
+            metrics/
+
+  model-testing:
+    needs: model-training
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pandas numpy scikit-learn
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      
+      - name: Download model artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: model-artifacts
+      
+      - name: Test model performance
+        run: |
+          pytest tests/test_model_performance.py -v
+      
+      - name: Test model API
+        run: |
+          pytest tests/test_model_api.py -v
+      
+      - name: Integration tests
+        run: |
+          pytest tests/test_integration.py -v
+
+  model-deployment:
+    needs: [model-training, model-testing]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Download model artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: model-artifacts
+      
+      - name: Deploy to model registry
+        run: |
+          echo "Deploying model to registry..."
+          # Add your model registry deployment logic here
+      
+      - name: Deploy to inference endpoint
+        run: |
+          echo "Deploying to inference endpoint..."
+          # Add your inference endpoint deployment logic here
+      
+      - name: Run post-deployment tests
+        run: |
+          python scripts/test_deployed_model.py
+      
+      - name: Notify deployment success
+        run: |
+          echo "🤖 ML model deployment successful!"
+          # Add notification logic (Slack, email, etc.)
