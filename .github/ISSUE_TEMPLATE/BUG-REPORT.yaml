@@ -2,61 +2,104 @@ name: "🐛 Bug Report"
 description: Create a new ticket for a bug.
 title: "🐛 [BUG] - <title>"
 labels: [
-  "bug"
+  "bug",
+  "needs-triage"
 ]
+assignees: []
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a bug! Please fill out this template to help us understand and reproduce the issue.
+
   - type: textarea
     id: description
     attributes:
-      label: "Description"
-      description: Please enter an explicit description of your issue
+      label: "🔍 Description"
+      description: Please enter a clear and concise description of the bug
       placeholder: Short and explicit description of your incident...
     validations:
       required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: "🚨 Severity"
+      description: How severe is this bug?
+      options:
+        - Critical - System/application crash, data loss
+        - High - Feature unusable, significant impact
+        - Medium - Feature partially working, moderate impact
+        - Low - Minor issue, cosmetic problem
+    validations:
+      required: true
+
   - type: input
     id: reprod-url
     attributes:
-      label: "Reproduction URL"
+      label: "🔗 Reproduction URL"
       description: Please enter your GitHub URL to provide a reproduction of the issue
       placeholder: ex. https://github.com/USERNAME/REPO-NAME
     validations:
       required: true
+
   - type: textarea
     id: reprod
     attributes:
-      label: "Reproduction steps"
-      description: Please enter an explicit description of your issue
+      label: "🔄 Reproduction Steps"
+      description: Please provide detailed steps to reproduce the issue
       value: |
         1. Go to '...'
         2. Click on '....'
         3. Scroll down to '....'
         4. See error
-      render: bash
+      render: markdown
     validations:
       required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "✅ Expected Behavior"
+      description: What did you expect to happen?
+      placeholder: Describe what you expected to happen...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: "❌ Actual Behavior"
+      description: What actually happened?
+      placeholder: Describe what actually happened...
+    validations:
+      required: true
+
   - type: textarea
     id: screenshot
     attributes:
-      label: "Screenshots"
+      label: "📸 Screenshots"
       description: If applicable, add screenshots to help explain your problem.
       value: |
         ![DESCRIPTION](LINK.png)
-      render: bash
+      render: markdown
     validations:
       required: false
+
   - type: textarea
     id: logs
     attributes:
-      label: "Logs"
+      label: "📋 Logs"
       description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
       render: bash
     validations:
       required: false
+
   - type: dropdown
     id: browsers
     attributes:
-      label: "Browsers"
-      description: What browsers are you seeing the problem on ?
+      label: "🌐 Browsers"
+      description: What browsers are you seeing the problem on?
       multiple: true
       options:
         - Firefox
@@ -64,17 +107,77 @@ body:
         - Safari
         - Microsoft Edge
         - Opera
+        - Other
     validations:
       required: false
+
   - type: dropdown
     id: os
     attributes:
-      label: "OS"
-      description: What is the impacted environment ?
+      label: "💻 Operating System"
+      description: What is the impacted environment?
       multiple: true
       options:
         - Windows
         - Linux
-        - Mac
+        - macOS
+        - iOS
+        - Android
+        - Other
     validations:
       required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: "📦 Version"
+      description: What version of the software are you using?
+      placeholder: e.g., v1.2.3, latest, commit hash
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: "🔧 Environment Details"
+      description: Please provide additional environment details
+      value: |
+        - **Python version**: 
+        - **uv version**: 
+        - **Node.js version**: 
+        - **Database version**: 
+        - **Other relevant versions**: 
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: "🔧 Workaround"
+      description: Is there a workaround for this issue?
+      placeholder: Describe any workarounds you've found...
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: "📝 Additional Context"
+      description: Add any other context about the problem here
+      placeholder: Any additional information that might be helpful...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: "📋 Checklist"
+      description: Please confirm the following
+      options:
+        - label: I have searched for existing issues that might be related to this bug
+          required: true
+        - label: I have provided all the requested information
+          required: true
+        - label: I have tested this on the latest version (if applicable)
+          required: false

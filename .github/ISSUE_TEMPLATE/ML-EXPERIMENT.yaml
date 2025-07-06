@@ -3,29 +3,100 @@ description: Create a new ticket for a machine learning experiment
 title: "🧪 [EXPERIMENT] - <title>"
 labels: [
   "experiment",
-  "ml"
+  "ml",
+  "needs-review"
 ]
+assignees: []
 body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🧪 ML Experiment Template
+        
+        This template helps track machine learning experiments systematically. Please fill out all relevant sections to ensure reproducibility and proper documentation.
+
   - type: input
     id: experiment_id
     attributes:
-      label: "Experiment ID"
+      label: "🆔 Experiment ID"
       description: Unique identifier for this experiment
-      placeholder: "exp-001, churn-prediction-v2, etc."
+      placeholder: "exp-001, churn-prediction-v2, sentiment-analysis-bert-v1"
     validations:
       required: true
+
+  - type: dropdown
+    id: experiment_type
+    attributes:
+      label: "🔬 Experiment Type"
+      description: What type of ML experiment is this?
+      options:
+        - Model Development
+        - Model Comparison
+        - Hyperparameter Tuning
+        - Feature Engineering
+        - Data Preprocessing
+        - Model Evaluation
+        - Deployment Test
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "📈 Priority"
+      description: What's the priority level of this experiment?
+      options:
+        - Critical - Blocking production deployment
+        - High - Important for milestone
+        - Medium - Planned improvement
+        - Low - Exploratory research
+    validations:
+      required: true
+
   - type: textarea
     id: objective
     attributes:
-      label: "Experiment Objective"
+      label: "🎯 Experiment Objective"
       description: What is the goal of this experiment?
       placeholder: "Describe the specific problem you're trying to solve or hypothesis you're testing..."
     validations:
       required: true
+
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: "🔬 Hypothesis"
+      description: What do you expect to learn or achieve?
+      placeholder: "State your hypothesis about what you expect to happen and why..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: success_criteria
+    attributes:
+      label: "✅ Success Criteria"
+      description: How will you determine if the experiment is successful?
+      value: |
+        **Primary Metrics:**
+        - 
+
+        **Secondary Metrics:**
+        - 
+
+        **Minimum Performance Thresholds:**
+        - 
+
+        **Business Impact Metrics:**
+        - 
+      render: markdown
+    validations:
+      required: true
+
   - type: textarea
     id: dataset
     attributes:
-      label: "Dataset Information"
+      label: "📊 Dataset Information"
       description: Details about the dataset(s) used
       value: |
         - **Dataset Name**: 
@@ -34,110 +105,186 @@ body:
         - **Features**: 
         - **Target Variable**: 
         - **Data Split**: Train/Validation/Test ratios
+        - **Data Version/Hash**: 
+        - **Preprocessing Steps**: 
+        - **Data Quality Issues**: 
       render: markdown
     validations:
       required: true
+
   - type: textarea
     id: model_approach
     attributes:
-      label: "Model Architecture/Approach"
+      label: "🤖 Model Architecture/Approach"
       description: Describe the ML model or approach being used
-      placeholder: "e.g., Random Forest, Neural Network, XGBoost, etc. Include architecture details..."
+      placeholder: "e.g., Random Forest, Neural Network, XGBoost, Transformer, etc. Include architecture details..."
     validations:
       required: true
+
   - type: textarea
     id: hyperparameters
     attributes:
-      label: "Hyperparameters"
+      label: "⚙️ Hyperparameters"
       description: Key hyperparameters and their values/ranges
       value: |
         ```yaml
+        model_type: "example_model"
         learning_rate: 0.001
         batch_size: 32
         epochs: 100
+        dropout: 0.2
         # Add your hyperparameters here
         ```
       render: yaml
     validations:
-      required: false
-  - type: textarea
-    id: metrics
-    attributes:
-      label: "Success Metrics"
-      description: How will you measure the success of this experiment?
-      placeholder: "e.g., Accuracy, F1-Score, AUC-ROC, RMSE, etc. Include target values if known..."
-    validations:
       required: true
+
   - type: textarea
     id: baseline
     attributes:
-      label: "Baseline Comparison"
+      label: "📊 Baseline Comparison"
       description: What are you comparing against?
-      placeholder: "Current production model, previous experiment, simple heuristic, etc."
-    validations:
-      required: false
-  - type: input
-    id: timeline
-    attributes:
-      label: "Expected Timeline"
-      description: How long do you expect this experiment to take?
-      placeholder: "e.g., 1 week, 2-3 days, etc."
-    validations:
-      required: false
-  - type: dropdown
-    id: priority
-    attributes:
-      label: "Priority"
-      description: What's the priority level of this experiment?
-      options:
-        - High
-        - Medium
-        - Low
+      value: |
+        **Baseline Model**: 
+        **Baseline Performance**: 
+        **Comparison Metrics**: 
+        **Expected Improvement**: 
+      render: markdown
     validations:
       required: true
+
+  - type: textarea
+    id: experiment_design
+    attributes:
+      label: "🔬 Experiment Design"
+      description: Describe the experimental setup and methodology
+      value: |
+        **Validation Strategy**: 
+        **Cross-validation**: 
+        **Train/Test Split**: 
+        **Evaluation Protocol**: 
+        **Statistical Testing**: 
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproducibility
+    attributes:
+      label: "🔄 Reproducibility Requirements"
+      description: Information needed to reproduce this experiment
+      value: |
+        **Random Seed**: 
+        **Environment**: 
+        **Dependencies**: 
+        **Hardware Requirements**: 
+        **Docker Image**: 
+        **Code Version/Branch**: 
+      render: markdown
+    validations:
+      required: true
+
   - type: textarea
     id: resources
     attributes:
-      label: "Resources Needed"
+      label: "💻 Resources Needed"
       description: What computational resources or tools are needed?
       value: |
         - **GPU/CPU**: 
         - **Memory**: 
         - **Storage**: 
+        - **Training Time**: 
         - **Special Tools**: 
         - **Cloud Resources**: 
+        - **Estimated Cost**: 
+      render: markdown
+    validations:
+      required: true
+
+  - type: input
+    id: timeline
+    attributes:
+      label: "📅 Expected Timeline"
+      description: How long do you expect this experiment to take?
+      placeholder: "e.g., 1 week, 2-3 days, 1 month"
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: "⚠️ Risks & Limitations"
+      description: What could go wrong or limit the experiment?
+      placeholder: "Data quality issues, computational constraints, time limitations, etc."
+    validations:
+      required: true
+
+  - type: textarea
+    id: monitoring
+    attributes:
+      label: "📈 Monitoring & Tracking"
+      description: How will you monitor the experiment progress?
+      value: |
+        **Tracking Tools**: 
+        **Metrics Dashboard**: 
+        **Logging Strategy**: 
+        **Checkpoint Frequency**: 
+        **Progress Reporting**: 
       render: markdown
     validations:
       required: false
+
   - type: textarea
     id: related_experiments
     attributes:
-      label: "Related Experiments"
+      label: "🔗 Related Experiments"
       description: Links to related experiments or issues
       placeholder: "#123, #456, or links to previous experiments..."
     validations:
       required: false
+
   - type: textarea
-    id: hypothesis
+    id: literature_review
     attributes:
-      label: "Hypothesis"
-      description: What do you expect to learn or achieve?
-      placeholder: "State your hypothesis about what you expect to happen and why..."
+      label: "📚 Literature & References"
+      description: Relevant papers, articles, or resources
+      placeholder: "List papers, blog posts, or other resources that inform this experiment..."
     validations:
       required: false
-  - type: textarea
-    id: risks
-    attributes:
-      label: "Risks & Limitations"
-      description: What could go wrong or limit the experiment?
-      placeholder: "Data quality issues, computational constraints, time limitations, etc."
-    validations:
-      required: false
+
   - type: textarea
     id: next_steps
     attributes:
-      label: "Next Steps"
+      label: "🚀 Next Steps"
       description: What happens after this experiment?
       placeholder: "How will results be used? What follow-up experiments might be needed?"
     validations:
+      required: true
+
+  - type: textarea
+    id: stakeholders
+    attributes:
+      label: "👥 Stakeholders"
+      description: Who should be involved or informed about this experiment?
+      placeholder: "List team members, product owners, or other stakeholders..."
+    validations:
       required: false
+
+  - type: checkboxes
+    id: experiment_checklist
+    attributes:
+      label: "📋 Experiment Checklist"
+      description: Please confirm the following before starting
+      options:
+        - label: I have defined clear success criteria and metrics
+          required: true
+        - label: I have identified the baseline for comparison
+          required: true
+        - label: I have considered the computational resources needed
+          required: true
+        - label: I have a plan for tracking and monitoring the experiment
+          required: true
+        - label: I have considered potential risks and limitations
+          required: false
+        - label: I have reviewed related work and experiments
+          required: false

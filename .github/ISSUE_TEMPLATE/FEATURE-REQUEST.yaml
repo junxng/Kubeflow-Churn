@@ -2,62 +2,197 @@ name: "💡 Feature Request"
 description: Create a new ticket for a new feature request
 title: "💡 [REQUEST] - <title>"
 labels: [
-  "question"
+  "enhancement",
+  "needs-triage"
 ]
+assignees: []
 body:
-  - type: input
-    id: start_date
+  - type: markdown
     attributes:
-      label: "Start Date"
-      description: Start of development
-      placeholder: "month/day/year"
+      value: |
+        Thank you for suggesting a new feature! Please fill out this template to help us understand your request and its impact.
+
+  - type: dropdown
+    id: feature_type
+    attributes:
+      label: "🎯 Feature Type"
+      description: What type of feature is this?
+      options:
+        - New functionality
+        - Enhancement to existing feature
+        - Performance improvement
+        - Developer experience improvement
+        - Documentation improvement
+        - Other
     validations:
-      required: false
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "📈 Priority"
+      description: How important is this feature?
+      options:
+        - Critical - Must have for next release
+        - High - Important for user experience
+        - Medium - Nice to have
+        - Low - Future consideration
+    validations:
+      required: true
+
   - type: textarea
-    id: implementation_pr
+    id: user_story
     attributes:
-      label: "Implementation PR"
-      description: Pull request used
-      placeholder: "#Pull Request ID"
+      label: "👤 User Story"
+      description: Describe this feature as a user story
+      placeholder: "As a [type of user], I want [an action] so that [benefit/value]"
     validations:
-      required: false
+      required: true
+
   - type: textarea
-    id: reference_issues
+    id: problem_statement
     attributes:
-      label: "Reference Issues"
-      description: Common issues
-      placeholder: "#Issues IDs"
+      label: "🎯 Problem Statement"
+      description: What problem does this feature solve?
+      placeholder: "Describe the problem or pain point this feature addresses..."
     validations:
-      required: false
+      required: true
+
   - type: textarea
     id: summary
     attributes:
-      label: "Summary"
+      label: "📝 Feature Summary"
       description: Provide a brief explanation of the feature
-      placeholder: Describe in a few lines your feature request
+      placeholder: "Describe in a few lines your feature request..."
     validations:
       required: true
+
+  - type: textarea
+    id: detailed_description
+    attributes:
+      label: "📋 Detailed Description"
+      description: Provide a detailed description of the proposed feature
+      placeholder: "Provide a comprehensive description of what you want to implement..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: "✅ Acceptance Criteria"
+      description: Define the criteria that must be met for this feature to be considered complete
+      value: |
+        - [ ] Criteria 1
+        - [ ] Criteria 2
+        - [ ] Criteria 3
+      render: markdown
+    validations:
+      required: true
+
   - type: textarea
     id: basic_example
     attributes:
-      label: "Basic Example"
-      description: Indicate here some basic examples of your feature.
-      placeholder: A few specific words about your feature request.
+      label: "💡 Basic Example"
+      description: Provide examples of how this feature would be used
+      placeholder: "Show specific examples of how users would interact with this feature..."
     validations:
       required: true
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: "🎨 Mockups/Wireframes"
+      description: If applicable, add mockups or wireframes to visualize the feature
+      value: |
+        ![Description](URL)
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "🔄 Alternatives Considered"
+      description: What alternative solutions have you considered?
+      placeholder: "Describe any alternative approaches you've thought about..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: impact_assessment
+    attributes:
+      label: "📊 Impact Assessment"
+      description: How will this feature impact users and the system?
+      value: |
+        **Positive Impact:**
+        - 
+
+        **Potential Risks:**
+        - 
+
+        **Affected Users:**
+        - 
+
+        **System Impact:**
+        - 
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation_ideas
+    attributes:
+      label: "🔧 Implementation Ideas"
+      description: Do you have ideas about how this could be implemented?
+      placeholder: "Share any technical approaches or implementation suggestions..."
+    validations:
+      required: false
+
   - type: textarea
     id: drawbacks
     attributes:
-      label: "Drawbacks"
-      description: What are the drawbacks/impacts of your feature request ?
-      placeholder: Identify the drawbacks and impacts while being neutral on your feature request
+      label: "⚠️ Drawbacks"
+      description: What are the drawbacks/impacts of your feature request?
+      placeholder: "Identify the drawbacks and impacts while being neutral on your feature request..."
     validations:
       required: true
-  - type: textarea
-    id: unresolved_question
+
+  - type: input
+    id: start_date
     attributes:
-      label: "Unresolved questions"
-      description: What questions still remain unresolved ?
-      placeholder: Identify any unresolved issues.
+      label: "📅 Desired Timeline"
+      description: When would you like to see this feature implemented?
+      placeholder: "e.g., Next quarter, By end of year, No rush"
     validations:
       required: false
+
+  - type: textarea
+    id: reference_issues
+    attributes:
+      label: "🔗 Related Issues"
+      description: Are there any related issues or pull requests?
+      placeholder: "#123, #456, or links to related discussions..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "📝 Additional Context"
+      description: Add any other context about the feature request
+      placeholder: "Any additional information that might be helpful..."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: "📋 Checklist"
+      description: Please confirm the following
+      options:
+        - label: I have searched for existing feature requests that might be similar
+          required: true
+        - label: I have provided sufficient detail about the feature and its benefits
+          required: true
+        - label: I understand this is a request and not a guarantee of implementation
+          required: true
