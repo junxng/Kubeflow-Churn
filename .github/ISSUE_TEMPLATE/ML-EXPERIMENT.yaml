@@ -1,0 +1,143 @@
+name: "🧪 ML Experiment"
+description: Create a new ticket for a machine learning experiment
+title: "🧪 [EXPERIMENT] - <title>"
+labels: [
+  "experiment",
+  "ml"
+]
+body:
+  - type: input
+    id: experiment_id
+    attributes:
+      label: "Experiment ID"
+      description: Unique identifier for this experiment
+      placeholder: "exp-001, churn-prediction-v2, etc."
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: "Experiment Objective"
+      description: What is the goal of this experiment?
+      placeholder: "Describe the specific problem you're trying to solve or hypothesis you're testing..."
+    validations:
+      required: true
+  - type: textarea
+    id: dataset
+    attributes:
+      label: "Dataset Information"
+      description: Details about the dataset(s) used
+      value: |
+        - **Dataset Name**: 
+        - **Source**: 
+        - **Size**: 
+        - **Features**: 
+        - **Target Variable**: 
+        - **Data Split**: Train/Validation/Test ratios
+      render: markdown
+    validations:
+      required: true
+  - type: textarea
+    id: model_approach
+    attributes:
+      label: "Model Architecture/Approach"
+      description: Describe the ML model or approach being used
+      placeholder: "e.g., Random Forest, Neural Network, XGBoost, etc. Include architecture details..."
+    validations:
+      required: true
+  - type: textarea
+    id: hyperparameters
+    attributes:
+      label: "Hyperparameters"
+      description: Key hyperparameters and their values/ranges
+      value: |
+        ```yaml
+        learning_rate: 0.001
+        batch_size: 32
+        epochs: 100
+        # Add your hyperparameters here
+        ```
+      render: yaml
+    validations:
+      required: false
+  - type: textarea
+    id: metrics
+    attributes:
+      label: "Success Metrics"
+      description: How will you measure the success of this experiment?
+      placeholder: "e.g., Accuracy, F1-Score, AUC-ROC, RMSE, etc. Include target values if known..."
+    validations:
+      required: true
+  - type: textarea
+    id: baseline
+    attributes:
+      label: "Baseline Comparison"
+      description: What are you comparing against?
+      placeholder: "Current production model, previous experiment, simple heuristic, etc."
+    validations:
+      required: false
+  - type: input
+    id: timeline
+    attributes:
+      label: "Expected Timeline"
+      description: How long do you expect this experiment to take?
+      placeholder: "e.g., 1 week, 2-3 days, etc."
+    validations:
+      required: false
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "Priority"
+      description: What's the priority level of this experiment?
+      options:
+        - High
+        - Medium
+        - Low
+    validations:
+      required: true
+  - type: textarea
+    id: resources
+    attributes:
+      label: "Resources Needed"
+      description: What computational resources or tools are needed?
+      value: |
+        - **GPU/CPU**: 
+        - **Memory**: 
+        - **Storage**: 
+        - **Special Tools**: 
+        - **Cloud Resources**: 
+      render: markdown
+    validations:
+      required: false
+  - type: textarea
+    id: related_experiments
+    attributes:
+      label: "Related Experiments"
+      description: Links to related experiments or issues
+      placeholder: "#123, #456, or links to previous experiments..."
+    validations:
+      required: false
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: "Hypothesis"
+      description: What do you expect to learn or achieve?
+      placeholder: "State your hypothesis about what you expect to happen and why..."
+    validations:
+      required: false
+  - type: textarea
+    id: risks
+    attributes:
+      label: "Risks & Limitations"
+      description: What could go wrong or limit the experiment?
+      placeholder: "Data quality issues, computational constraints, time limitations, etc."
+    validations:
+      required: false
+  - type: textarea
+    id: next_steps
+    attributes:
+      label: "Next Steps"
+      description: What happens after this experiment?
+      placeholder: "How will results be used? What follow-up experiments might be needed?"
+    validations:
+      required: false
