@@ -5,7 +5,9 @@ labels: [
   "bug",
   "needs-triage"
 ]
-assignees: []
+assignees: [
+  "david-m-b"
+]
 body:
   - type: markdown
     attributes:

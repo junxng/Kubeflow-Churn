@@ -23,27 +23,27 @@ Fixes # (issue)
 
 ## 🔍 What Changed
 
-### Key Changes:
+### Key Changes
 <!-- List the main changes made in this PR -->
-- 
-- 
-- 
+-
+-
+-
 
-### Files Modified:
+### Files Modified
 <!-- List key files that were modified -->
-- 
-- 
-- 
+-
+-
+-
 
 ## 🧪 Testing
 
-### Manual Testing:
+### Manual Testing
 <!-- Describe the tests that you ran to verify your changes -->
-- [ ] Test A: 
-- [ ] Test B: 
-- [ ] Test C: 
+- [ ] Test A:
+- [ ] Test B:
+- [ ] Test C:
 
-### Automated Testing:
+### Automated Testing
 <!-- Check all that apply -->
 - [ ] Unit tests added/updated
 - [ ] Integration tests added/updated
@@ -53,11 +53,11 @@ Fixes # (issue)
 
 **Test Configuration:**
 <!-- Provide details about your test environment -->
-- **Environment**: 
-- **Python/uv version**: 
-- **Browser/OS**: 
-- **Database**: 
-- **Version**: 
+- **Environment**:
+- **Python/uv version**:
+- **Browser/OS**:
+- **Database**:
+- **Version**:
 
 ## 📊 Performance Impact
 
@@ -91,6 +91,7 @@ Fixes # (issue)
 <!-- Add screenshots or videos of UI changes -->
 
 **Accessibility:**
+
 - [ ] Changes are accessible
 - [ ] Screen reader tested
 - [ ] Keyboard navigation works
@@ -112,7 +113,8 @@ Fixes # (issue)
 
 ## 📋 Checklist
 
-### Code Quality:
+### Code Quality
+
 - [ ] My code follows the project's style guidelines
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented my code, particularly in hard-to-understand areas
@@ -120,23 +122,27 @@ Fixes # (issue)
 - [ ] My changes generate no new warnings or errors
 - [ ] I have checked my code and corrected any misspellings
 
-### Testing:
+### Testing
+
 - [ ] I have added tests that prove my fix is effective or that my feature works
 - [ ] New and existing unit tests pass locally with my changes
 - [ ] I have tested the changes on different browsers/devices (if applicable)
 
-### Documentation:
+### Documentation
+
 - [ ] I have updated the documentation where necessary
 - [ ] I have added/updated code comments for complex logic
 - [ ] I have updated the changelog (if applicable)
 
-### Dependencies:
+### Dependencies
+
 - [ ] Any dependent changes have been merged and published in downstream modules
 - [ ] I have reviewed and updated dependencies with uv if needed
 - [ ] I have checked for any security vulnerabilities in dependencies
 - [ ] I have updated pyproject.toml/requirements.txt if dependencies changed
 
-### Review:
+### Review
+
 - [ ] I have assigned appropriate reviewers
 - [ ] I have added appropriate labels
 - [ ] I have linked related issues
@@ -145,6 +151,7 @@ Fixes # (issue)
 ## 🤝 Review Guidelines
 
 **For Reviewers:**
+
 - Focus on: Logic, security, performance, maintainability
 - Check: Tests, documentation, error handling
 - Verify: Changes match requirements, no breaking changes
@@ -158,4 +165,4 @@ Fixes # (issue)
 
 ---
 
-**Thanks for contributing! 🎉**
+Thanks for contributing! 🎉

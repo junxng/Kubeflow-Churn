@@ -4,7 +4,7 @@ This directory contains all the data files used in the churn prediction project,
 
 ## Directory Structure
 
-```
+```text
 data/
 ├── raw/                    # Original, immutable data
 ├── external/              # External data sources
@@ -59,6 +59,7 @@ Contains the final datasets ready for machine learning:
 ### Customer Data Features
 
 #### Demographics
+
 - `age`: Customer age in years
 - `gender`: Customer gender (Male/Female)
 - `senior_citizen`: Whether customer is a senior citizen (0/1)
@@ -66,6 +67,7 @@ Contains the final datasets ready for machine learning:
 - `dependents`: Whether customer has dependents (Yes/No)
 
 #### Account Information
+
 - `customer_id`: Unique customer identifier
 - `tenure_months`: Number of months as customer
 - `contract_type`: Contract type (Month-to-month, One year, Two year)
@@ -75,6 +77,7 @@ Contains the final datasets ready for machine learning:
 - `total_charges`: Total amount charged over tenure
 
 #### Services
+
 - `phone_service`: Whether customer has phone service
 - `multiple_lines`: Whether customer has multiple phone lines
 - `internet_service`: Type of internet service (DSL, Fiber optic, No)
@@ -86,6 +89,7 @@ Contains the final datasets ready for machine learning:
 - `streaming_movies`: Whether customer has streaming movies add-on
 
 #### Target Variable
+
 - `churn`: Whether customer churned (0 = No, 1 = Yes)
 
 ### Usage Data Features
@@ -182,7 +186,7 @@ dvc add data/raw/new_data.csv
 
 ## Data Lineage
 
-```
+```text
 Raw Data Sources
 ├── Customer Database → customer_data.csv
 ├── Usage Logs → usage_data.csv
