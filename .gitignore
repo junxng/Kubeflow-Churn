@@ -1,0 +1,99 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are created by a PyInstaller bundle and are not required to
+#  be stored in version control
+*.manifest
+*.spec
+
+# Python Virtualenv
+.venv
+venv/
+env/
+ENV/
+virtualenv/
+venv
+# Spyder project settings
+.spyderproject
+.spyderworkspace
+
+# Pytest
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+
+# Mypy
+.mypy_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Secrets
+.env
+*.env
+secrets.yaml
+
+# Logs
+logs/
+*.log
+monitoring/logs/
+
+# DVC tracked files (data, models, etc.)
+# These are typically large files managed by DVC.
+# DVC will create .dvc files to track them, which should be committed.
+data/raw/*
+!data/raw/.gitkeep
+data/interim/*
+!data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/external/*
+!data/external/.gitkeep
+models/*
+!models/.gitkeep
+!models/README.md
+
+# Other
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
