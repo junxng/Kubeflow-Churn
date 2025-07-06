@@ -54,6 +54,7 @@ Fixes # (issue)
 **Test Configuration:**
 <!-- Provide details about your test environment -->
 - **Environment**: 
+- **Python/uv version**: 
 - **Browser/OS**: 
 - **Database**: 
 - **Version**: 
@@ -104,6 +105,7 @@ Fixes # (issue)
 - [ ] Third-party service configuration required
 - [ ] Requires feature flag
 - [ ] Requires gradual rollout
+- [ ] Python dependencies updated (uv sync required)
 
 **Deployment Instructions:**
 <!-- Provide step-by-step deployment instructions if needed -->
@@ -130,8 +132,9 @@ Fixes # (issue)
 
 ### Dependencies:
 - [ ] Any dependent changes have been merged and published in downstream modules
-- [ ] I have reviewed and updated dependencies if needed
+- [ ] I have reviewed and updated dependencies with uv if needed
 - [ ] I have checked for any security vulnerabilities in dependencies
+- [ ] I have updated pyproject.toml/requirements.txt if dependencies changed
 
 ### Review:
 - [ ] I have assigned appropriate reviewers

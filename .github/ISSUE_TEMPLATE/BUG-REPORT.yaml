@@ -142,8 +142,9 @@ body:
       label: "🔧 Environment Details"
       description: Please provide additional environment details
       value: |
-        - **Node.js version**: 
         - **Python version**: 
+        - **uv version**: 
+        - **Node.js version**: 
         - **Database version**: 
         - **Other relevant versions**: 
       render: markdown
